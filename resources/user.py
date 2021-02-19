@@ -115,7 +115,7 @@ class login(Resource):
 class account_balance(Resource):
 #    global users
     #@jwt_required()
-    @jwt_required
+
     def get(self, phone_number):
         user = Ujer.find_by_phone_number(phone_number)
         balance = user.account_balance
@@ -146,7 +146,7 @@ class Top_up(Resource):
                         )
 
 
-    @jwt_required
+
     def put(self):
         data = Top_up.parser.parse_args()
         user = Ujer.find_by_phone_number(data['phone_number'])
@@ -210,7 +210,7 @@ class transfer(Resource):
                         help="every transfer needs a user"
                         )
 
-    @jwt_required
+
     def post(self):
         data = transfer.parser.parse_args()
 
