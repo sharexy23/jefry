@@ -7,7 +7,7 @@ from flask_restful import Resource, reqparse
 #from flask_jwt import jwt_required
 from flask_jwt_extended import create_access_token,jwt_required
 #from flask_mail import *
-from jwt.algorithms import requires_cryptography
+
 
 class register(Resource):
     parser = reqparse.RequestParser()
@@ -158,7 +158,7 @@ class Top_up(Resource):
             json = user.account_balance
             return{
             'status':True,
-            'account_balance':json
+            'message':'your account has been credited'
             }
         return{
         'status': False,
