@@ -145,7 +145,7 @@ class Top_up(Resource):
                         )
 
 
-    @jwt_required
+    #@jwt_required
     def put(self):
         data = Top_up.parser.parse_args()
         user = Ujer.find_by_phone_number(data['phone_number'])
@@ -158,7 +158,7 @@ class Top_up(Resource):
             json = user.account_balance
             return{
             'status':True,
-            'message':'your account has been credited'
+            'message': json
             }
         return{
         'status': False,
