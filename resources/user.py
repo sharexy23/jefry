@@ -122,7 +122,7 @@ class login(Resource):
 class account_balance(Resource):
 #    global users
     #@jwt_required()
-
+    @jwt_required
     def get(self, phone_number):
         user = Ujer.find_by_phone_number(phone_number)
         balance = user.account_balance
@@ -165,8 +165,8 @@ class Top_up(Resource):
             Ujer.save_to_db(user)
             json = user.account_balance
             return{
-            #'status':True,
-            'data':' json'
+            'status':True,
+            'data': json
             },200
         return{
         'status': False,
@@ -263,8 +263,8 @@ class TransferHistory(Resource):
                         help="This field cannot be left blank!"
                         )
 
-    #it seems to me that this function is cur
-
+    #it seems to me that this function is cursed
+    @jwt_required
     def post(self):
         data = TransferHistory.parser.parse_args()
         user = Ujer.find_by_phone_number(data['phone_number'])
