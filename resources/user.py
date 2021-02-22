@@ -166,7 +166,7 @@ class Top_up(Resource):
             json = user.account_balance
             return{
             'status':True,
-            'message': json
+            'data': json
             },200
         return{
         'status': False,
@@ -245,10 +245,10 @@ class transfer(Resource):
             Transfer.save_to_db(transferg)
             Ujer.save_to_db(user)
             #user.transfers = user.transfers + ('j')
-            acc =user.account_balance
+            acc = user.account_balance
             return {
                           'status':True,
-                         # 'data': jsonify(acc),
+                          'data': acc,
                           'message':'you have succesfully made your transfer'
             }
         return {'message':'either your account or the destination account doesnt exist'}
