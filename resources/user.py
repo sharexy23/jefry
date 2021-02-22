@@ -264,7 +264,7 @@ class TransferHistory(Resource):
                         )
 
     #it seems to me that this function is cursed
-    @jwt_required
+    @jwt_required()
     def post(self):
         data = TransferHistory.parser.parse_args()
         user = Ujer.find_by_phone_number(data['phone_number'])
