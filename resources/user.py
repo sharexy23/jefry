@@ -165,8 +165,8 @@ class Top_up(Resource):
             Ujer.save_to_db(user)
             json = user.account_balance
             return{
-            'status':True,
-            'data': json
+            #'status':True,
+            'data':' json'
             },200
         return{
         'status': False,
