@@ -4,4 +4,3 @@ Flask-JWT-Extended
 Flask-JWT
 Flask-SQLAlchemy
 uwsgi
-win10toast
