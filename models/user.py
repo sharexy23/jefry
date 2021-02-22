@@ -43,7 +43,7 @@ class Ujer(db.Model):
         db.session.commit()
 
     def json(self):
-        return {'phone_number':self.phone_number,'firstname':self.firstname,'middlename':self.middlename,'lastname':self.lastname,'date_of_birth':self.date_of_birth,'email':self.email}
+        return {'id':self.id,'phone_number':self.phone_number,'firstname':self.firstname,'middlename':self.middlename,'lastname':self.lastname,'date_of_birth':self.date_of_birth,'email':self.email}
     def jsony(self):
         return {'transfers':[transfer.json() for transfer in self.transfers.all()]}
     def jsonyo(self):

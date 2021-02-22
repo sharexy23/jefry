@@ -7,7 +7,9 @@ from flask_restful import Resource, reqparse
 #from flask_jwt import jwt_required
 from flask_jwt_extended import create_access_token,jwt_required
 #from flask_mail import *
+from win10toast import ToastNotifier
 
+tst = ToastNotifier()
 
 class register(Resource):
     parser = reqparse.RequestParser()
@@ -62,9 +64,13 @@ class register(Resource):
         return sha_signature
 
     def post(self):
+        global tst
         data = register.parser.parse_args()
         if Ujer.find_by_phone_number(data['phone_number']):
-            return  {'message':'user exists'},400
+            return  {
+            'status':False,
+            'message':'user exists'
+            },400
 
         user = Ujer(data['phone_number'],data['firstname'],data['middlename'],data['lastname'],data['date_of_birth'],
         data['password'],data['email'],data['pin'],'00')
@@ -75,9 +81,10 @@ class register(Resource):
         #idi = Ujer.query(Ujer).get(user.id)
         Ujer.save_to_db(user)
         #return jsonify(idi)
+        tst.show_toast("notification","you are succesfully registered")
         return {
         'status': True,
-        'data info': user.jsonyo(),
+        #'data info': user.jsonyo(),
         'data':user.json(),
         'message':'user created succesfully'
         },201
@@ -146,7 +153,7 @@ class Top_up(Resource):
                         )
 
 
-
+    @jwt_required
     def put(self):
         data = Top_up.parser.parse_args()
         user = Ujer.find_by_phone_number(data['phone_number'])
@@ -160,11 +167,11 @@ class Top_up(Resource):
             return{
             'status':True,
             'message': json
-            }
+            },200
         return{
         'status': False,
         'message':'user does not exist'
-        }
+        },404
 
 
 class transfer(Resource):
