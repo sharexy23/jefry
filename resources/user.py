@@ -62,8 +62,8 @@ class register(Resource):
         sha_signature = \
             hashlib.sha256(hash_string.encode()).hexdigest()
         return sha_signature
-        
-    @jwt_required
+
+    @jwt_required()
     def post(self):
         global tst
         data = register.parser.parse_args()
