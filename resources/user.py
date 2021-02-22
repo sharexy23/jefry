@@ -63,7 +63,7 @@ class register(Resource):
             hashlib.sha256(hash_string.encode()).hexdigest()
         return sha_signature
 
-    @jwt_required()
+
     def post(self):
         global tst
         data = register.parser.parse_args()
@@ -123,7 +123,7 @@ class login(Resource):
 class account_balance(Resource):
 #    global users
     #@jwt_required()
-    @jwt_required
+
     def get(self, phone_number):
         user = Ujer.find_by_phone_number(phone_number)
         balance = user.account_balance
@@ -154,7 +154,7 @@ class Top_up(Resource):
                         )
 
 
-    @jwt_required
+
     def put(self):
         data = Top_up.parser.parse_args()
         user = Ujer.find_by_phone_number(data['phone_number'])
@@ -265,7 +265,7 @@ class TransferHistory(Resource):
                         )
 
     #it seems to me that this function is cursed
-    @jwt_required()
+    
     def post(self):
         data = TransferHistory.parser.parse_args()
         user = Ujer.find_by_phone_number(data['phone_number'])
