@@ -85,7 +85,7 @@ class register(Resource):
         return {
         'status': True,
         #'data info': user.jsonyo(),
-        'data':user.json(),
+        #'data':user.json(),
         'message':'user created succesfully'
         },201
 
