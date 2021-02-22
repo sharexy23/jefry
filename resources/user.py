@@ -62,7 +62,8 @@ class register(Resource):
         sha_signature = \
             hashlib.sha256(hash_string.encode()).hexdigest()
         return sha_signature
-
+        
+    @jwt_required
     def post(self):
         global tst
         data = register.parser.parse_args()
@@ -85,7 +86,7 @@ class register(Resource):
         return {
         'status': True,
         #'data info': user.jsonyo(),
-        #'data':user.json(),
+        'data':user.json(),
         'message':'user created succesfully'
         },201
 
